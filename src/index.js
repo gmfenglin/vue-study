@@ -53,10 +53,24 @@ const routes=[
 const router=new VueRouter({});
 router.addRoutes(routes);
 Vue.mixin(loger);
+Vue.prototype.$EventBus = new Vue()
+
 new Vue({
     el: '#root',
+    name:"root",
     store,
     router,
-    render:(h)=>h(App)
+    created(){
+      this.devMode=true;
+    },
+    render:(h)=>h(App),
+    mounted(){
+      
+      this.$EventBus.$emit("addTab",{path:"/e", title:"首页4",selected:false,key:"home46",icon:"icofont-home"});
+      let that=this;
+      this.$EventBus.$on("selectedTab",(item)=>{
+        that.log(item);
+      });
+    }
   });
   
