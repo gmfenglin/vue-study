@@ -45,7 +45,7 @@ module.exports=webpackMerge(baseConfig,{
                 test:/\.css$/,
                 use:[
                     {loader:MiniCssExtractPlugin.loader},
-                    {loader:'vue-style-loader'},
+                   
                     {loader:"css-loader"},
 					{loader:"postcss-loader"},
                 ]
@@ -54,7 +54,7 @@ module.exports=webpackMerge(baseConfig,{
                 test:/\.scss$/,
                 use:[
                     {loader:MiniCssExtractPlugin.loader},
-                    {loader:'vue-style-loader'},
+                   
                     {loader:"css-loader"},
                     {loader:"postcss-loader"},
                     {loader:"sass-loader"}
@@ -64,7 +64,7 @@ module.exports=webpackMerge(baseConfig,{
                 test:/\.less$/,
                 use:[
                     {loader:MiniCssExtractPlugin.loader},
-                    {loader:'vue-style-loader'},
+                  
                     {loader:"css-loader"},
                     {loader:"postcss-loader"},
                     {loader:"less-loader"}
