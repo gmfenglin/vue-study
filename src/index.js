@@ -9,6 +9,10 @@ import Tb from './testdata/tb.vue'
 import Tc from './testdata/tc.vue'
 import Td from './testdata/td.vue'
 import Te from './testdata/te.vue'
+
+
+
+
 // test code
 Vue.use(Vuex)
 Vue.use(VueRouter);

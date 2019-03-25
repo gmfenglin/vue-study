@@ -126,7 +126,7 @@ export default {
             switch(key){
                 case 'close':{
                     this.onClose(this.navItems[navIndex],navIndex);
-                    brak;
+                    break;
                     }
                 case 'closeLeft':{
                     this.navItems.splice(1,navIndex-1);
@@ -139,7 +139,7 @@ export default {
                     if(newSelectedIndex==-1){
                          this.navItems[1].selected=true;  
                     }
-                    brak;
+                    break;
                     }
                 case 'closeRight':{
                      this.navItems.splice(navIndex+1, this.navItems.length-1);
@@ -152,7 +152,7 @@ export default {
                     if(newSelectedIndex==-1){
                          this.navItems[ this.navItems.length-1].selected=true;
                     }
-                    brak;
+                    break;
                     }
                 case 'closeOther':{
                     if(navIndex==0){
@@ -176,12 +176,12 @@ export default {
                         }
                     
                     }
-                    brak;
+                    break;
                     }
                 case 'closeAll':{
                     this.navItems.splice(1,this.navItems.length-1);
                     this.navItems[0].selected=true;
-                    brak;
+                    break;
                     }
             }
         },

@@ -10,7 +10,7 @@ module.exports=webpackMerge(baseConfig,{
     devtool:"source-map",
     devServer:{
         contentBase:path.resolve(ROOT_PATH,"dist"),
-        port:8080,
+        port:8089,
         before(app) {
           apiMocker(app, mocker, {
               proxy: {
