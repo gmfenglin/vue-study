@@ -25,6 +25,7 @@ import TabNavContainer from './tabNavContainer.vue'
 import TabContent from './tabContent.vue'
 import TabNavItem from './tabNavItem.vue'
 import RightMenu from './rightMenu.vue'
+import {_debouce,_throttle} from '../../performance/performance.js'
 import './style.scss'
 export default {
     name:"NavContainer",
@@ -42,8 +43,8 @@ export default {
             isShowRightMenu:false,
             menuData:[],
             navItems:[
-                { path:"/a", title:"首页",selected:true,key:"home",icon:"icofont-home"}//,
-               /* {path:"/b", title:"首页1",selected:false,key:"home1",icon:"icofont-home"},
+                { path:"/a", title:"首页",selected:true,key:"home",icon:"icofont-home"},
+               {path:"/b", title:"首页1",selected:false,key:"home1",icon:"icofont-home"},
                 {path:"/c", title:"首页2",selected:false,key:"home2",icon:"icofont-home"},
                  {path:"/d", title:"首页3",selected:false,key:"home3",icon:"icofont-home"},
                 {path:"/e", title:"首页4",selected:false,key:"home4",icon:"icofont-home"}
@@ -76,7 +77,7 @@ export default {
                 {path:"/b", title:"首页1",selected:false,key:"home16",icon:"icofont-home"},
                 {path:"/c", title:"首页2",selected:false,key:"home26",icon:"icofont-home"},
                  {path:"/d", title:"首页3",selected:false,key:"home36",icon:"icofont-home"},
-                {path:"/e", title:"首页4",selected:false,key:"home46",icon:"icofont-home"}*/
+                {path:"/e", title:"首页4",selected:false,key:"home46",icon:"icofont-home"}
             ]
         };
     },
@@ -101,9 +102,9 @@ export default {
         }
     },
     watch:{
-        navCount(){
+        navCount:_throttle(function(){
             this.condition=this.isScroll();
-        }
+        },150)
     },
     methods:{
         addTab(item){
@@ -120,7 +121,7 @@ export default {
                 item.selected=true;
             }
         },
-        onSelectedMeun(item){
+        onSelectedMeun:_debouce (function(item){
             this.isShowRightMenu=false;
             const {key,navKey,navIndex}=item;
             switch(key){
@@ -184,11 +185,11 @@ export default {
                     break;
                     }
             }
-        },
+        },100),
         onMouseLeave(){
             this.isShowRightMenu=false;
         },
-        onRrightMenu(item,index){
+        onRrightMenu:_debouce (function(item,index){
              let eleArray= document.querySelectorAll('.tab-nav');
             let ele=eleArray[index];
            this.menuData.splice(0,this.menuData.length);
@@ -225,8 +226,8 @@ export default {
             this.log(this.menuData);
             menu.style.left =this.leftMenu+ 'px';
 			menu.style.top = this.topMenu+ 'px';
-        },
-        onScroll(direction){
+        },100),
+        onScroll:_debouce (function(direction){
              let eleArray= document.querySelectorAll('.tab-nav');
 
             let length=4;
@@ -250,13 +251,13 @@ export default {
                 this.left=left;
                 this.right=right;
             }
-        },
-         onSelected(item){
+        },100),
+         onSelected:_debouce (function(item){
                 this.$router.push(item.path);
                 this.navItems.map((navItem)=>{
                     return navItem.selected=item.key==navItem.key;
                 });
-        },
+        },100),
         isScroll(){
             let flag=false;
             if(document.querySelector('.tab-nav')==null){
@@ -274,7 +275,7 @@ export default {
             }
             return flag;
         },
-        onClose(item,index){
+        onClose:_debouce (function(item,index){
             if(item.key == "home"){
                 return ;
             }
@@ -289,7 +290,7 @@ export default {
             }
             this.navItems.splice(index,1);
             
-        }
+        },50)
     }
 }
 </script>
