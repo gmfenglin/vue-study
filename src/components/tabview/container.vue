@@ -186,9 +186,9 @@ export default {
                     }
             }
         },100),
-        onMouseLeave(){
+        onMouseLeave:_debouce(function(){
             this.isShowRightMenu=false;
-        },
+        }),
         onRrightMenu:_debouce (function(item,index){
              let eleArray= document.querySelectorAll('.tab-nav');
             let ele=eleArray[index];
@@ -257,7 +257,7 @@ export default {
                 this.navItems.map((navItem)=>{
                     return navItem.selected=item.key==navItem.key;
                 });
-        },100),
+        },50),
         isScroll(){
             let flag=false;
             if(document.querySelector('.tab-nav')==null){

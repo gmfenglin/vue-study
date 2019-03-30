@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Vuex, { mapState } from 'vuex'
 import App from './components/tabview/container.vue';
 import loger from './mixins/log.js'
+import {isMobile} from './fit/fit.js'
+
+
 // test code
 import Ta from './testdata/ta.vue'
 import Tb from './testdata/tb.vue'
@@ -11,22 +14,6 @@ import Td from './testdata/td.vue'
 import Te from './testdata/te.vue'
 
 
-let mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
-let browser = navigator.userAgent.toLowerCase();
-let isMobile = false;
-for (let i = 0; i < mobileAgent.length; i++) {
-  if (browser.indexOf(mobileAgent[i]) != -1) {
-    isMobile = true;
-    break;
-  }
-}
-let htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;// 屏幕宽度
-let htmlDom = document.getElementsByTagName("html")[0];// 根元素
-if(isMobile){
-  htmlDom.style.fontSize = htmlWidth / 37.5 + "px";// rem 基准值
-}else{
-  htmlDom.style.fontSize = 16 + "px";// rem 基准值
-}
 
 
 // test code
@@ -75,7 +62,7 @@ router.addRoutes(routes);
 Vue.mixin(loger);
 
 Vue.prototype.$EventBus = new Vue()
-Vue.prototype.$isMobile=isMobile;
+Vue.prototype.$isMobile=isMobile();
 
 new Vue({
   el: '#root',
