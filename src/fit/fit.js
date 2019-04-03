@@ -24,7 +24,7 @@ const computeScale = () => {
     let scale= 1/ dpr;
     let meta=document.createElement("meta");
     meta.name = "viewport";
-    meta.content = "width=device-width,initial-scale="+scale+",maximum-scale=,user-scalable=0 ";
+    meta.content = "width=device-width,initial-scale="+scale+",maximum-scale="+scale+",user-scalable=0 ";
     document.firstElementChild.firstChild.appendChild(meta);
 };
 let resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize';

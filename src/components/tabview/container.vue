@@ -244,6 +244,9 @@ export default {
         
             let flag=length>document.querySelector('.tab-header').clientWidth;
             if(flag || (this.left>0 && direction=="right") || (this.right>0 && direction=="left")){
+                if(direction=="right" && this.left<1){
+                    return;
+                }
                 let tx=direction=='left'?eleArray[this.left].clientWidth+4:-eleArray[this.left-1].clientWidth-4;
                 document.querySelector('.tab-wrap').scrollLeft+=tx;
                 let left=direction=='left'?this.left+1:this.left-1<0?0:this.left-1;
