@@ -17,6 +17,7 @@ export default {
     props:["navItem","index","onSelected","onClose","onRightMenu"],
     watch:{
         "navItem.selected"(flag){
+            this.log(flag);
             if(flag){
                 this.$EventBus.$emit("selectedTab",this.navItem);
             }

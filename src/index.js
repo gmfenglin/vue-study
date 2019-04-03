@@ -1,22 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex, { mapState } from 'vuex'
-import App from './components/tabview/container.vue';
+import App from './app.vue';
 import loger from './mixins/log.js'
 import {isMobile} from './fit/fit.js'
+import userList from './model/user/list/container.vue';
 
-
-// test code
-import Ta from './testdata/ta.vue'
-import Tb from './testdata/tb.vue'
-import Tc from './testdata/tc.vue'
-import Td from './testdata/td.vue'
-import Te from './testdata/te.vue'
-
-
-
-
-// test code
 Vue.use(Vuex)
 Vue.use(VueRouter);
 const store = new Vuex.Store({
@@ -24,36 +13,11 @@ const store = new Vuex.Store({
     count: 0
   }
 });
+console.log(userList);
 const routes = [
   {
-    path: "/a",
-    name: "a",
-    components: { tabview: Ta }
-
-  }
-  ,
-  {
-    path: "/b",
-    name: "b",
-    components: { tabview: Tb }
-
-  },
-  {
-    path: "/c",
-    name: "c",
-    components: { tabview: Tc }
-
-  },
-  {
-    path: "/d",
-    name: "d",
-    components: { tabview: Td }
-
-  },
-  {
-    path: "/e",
-    name: "e",
-    components: { tabview: Te }
+    path: "/user/list",
+    components: { tabview: userList }
 
   }
 ];
@@ -75,7 +39,7 @@ new Vue({
   render: (h) => h(App),
   mounted() {
 
-    this.$EventBus.$emit("addTab", { path: "/e", title: "首页4", selected: false, key: "home46", icon: "icofont-home" });
+    this.$EventBus.$emit("addTab", { path: "/home", title: "首页", selected: true, key: "home", icon: "icofont-home" });
     let that = this;
     this.$EventBus.$on("selectedTab", (item) => {
       that.log(item);

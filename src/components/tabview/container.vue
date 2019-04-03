@@ -43,41 +43,6 @@ export default {
             isShowRightMenu:false,
             menuData:[],
             navItems:[
-                { path:"/a", title:"首页",selected:true,key:"home",icon:"icofont-home"},
-               {path:"/b", title:"首页1",selected:false,key:"home1",icon:"icofont-home"},
-                {path:"/c", title:"首页2",selected:false,key:"home2",icon:"icofont-home"},
-                 {path:"/d", title:"首页3",selected:false,key:"home3",icon:"icofont-home"},
-                {path:"/e", title:"首页4",selected:false,key:"home4",icon:"icofont-home"}
-                ,
-                {path:"/b", title:"首页1",selected:false,key:"home11",icon:"icofont-home"},
-                {path:"/c", title:"首页2",selected:false,key:"home21",icon:"icofont-home"},
-                 {path:"/d", title:"首页3",selected:false,key:"home31",icon:"icofont-home"},
-                {path:"/e", title:"首页4",selected:false,key:"home41",icon:"icofont-home"}
-                ,
-                {path:"/b", title:"首页1",selected:false,key:"home12",icon:"icofont-home"},
-                {path:"/c", title:"首页2",selected:false,key:"home22",icon:"icofont-home"},
-                 {path:"/d", title:"首页3",selected:false,key:"home32",icon:"icofont-home"},
-                {path:"/e", title:"首页4",selected:false,key:"home42",icon:"icofont-home"}
-                ,
-                {path:"/b", title:"首页1",selected:false,key:"home13",icon:"icofont-home"},
-                {path:"/c", title:"首页2",selected:false,key:"home23",icon:"icofont-home"},
-                 {path:"/d", title:"首页3",selected:false,key:"home33",icon:"icofont-home"},
-                {path:"/e", title:"首页4",selected:false,key:"home43",icon:"icofont-home"}
-                ,
-                {path:"/b", title:"首页1",selected:false,key:"home14",icon:"icofont-home"},
-                {path:"/c", title:"首页2",selected:false,key:"home24",icon:"icofont-home"},
-                 {path:"/d", title:"首页3",selected:false,key:"home34",icon:"icofont-home"},
-                {path:"/e", title:"首页4",selected:false,key:"home44",icon:"icofont-home"}
-                ,
-                {path:"/b", title:"首页1",selected:false,key:"home15",icon:"icofont-home"},
-                {path:"/c", title:"首页2",selected:false,key:"home25",icon:"icofont-home"},
-                 {path:"/d", title:"首页3",selected:false,key:"home35",icon:"icofont-home"},
-                {path:"/e", title:"首页4",selected:false,key:"home45",icon:"icofont-home"}
-                ,
-                {path:"/b", title:"首页1",selected:false,key:"home16",icon:"icofont-home"},
-                {path:"/c", title:"首页2",selected:false,key:"home26",icon:"icofont-home"},
-                 {path:"/d", title:"首页3",selected:false,key:"home36",icon:"icofont-home"},
-                {path:"/e", title:"首页4",selected:false,key:"home46",icon:"icofont-home"}
             ]
         };
     },
@@ -120,6 +85,7 @@ export default {
                 this.navItems.push(item);
                 item.selected=true;
             }
+             this.onSelected(item);
         },
         onSelectedMeun:_debouce (function(item){
             this.isShowRightMenu=false;
@@ -269,7 +235,8 @@ export default {
             }
             let eleArray= document.querySelectorAll('.tab-nav');
             let length=4;
-            for(let i=0;i<this.navCount;i++){
+            let count=this.navCount>eleArray.length?eleArray.length:this.navCount;
+            for(let i=0;i<count;i++){
                 length+=eleArray[i].clientWidth;
             }
             flag=length>document.querySelector('.tab-header').clientWidth;
