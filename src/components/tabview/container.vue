@@ -102,9 +102,9 @@ export default {
         }
     },
     watch:{
-        navCount:_throttle(function(){
+        navCount:function(){
             this.condition=this.isScroll();
-        },150)
+        }
     },
     methods:{
         addTab(item){
@@ -269,7 +269,7 @@ export default {
             }
             let eleArray= document.querySelectorAll('.tab-nav');
             let length=4;
-            for(let i=0;i<eleArray.length;i++){
+            for(let i=0;i<this.navCount;i++){
                 length+=eleArray[i].clientWidth;
             }
             flag=length>document.querySelector('.tab-header').clientWidth;
